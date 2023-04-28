@@ -13,8 +13,9 @@ namespace BrickBreaker
     public partial class MenuScreen : UserControl
     {
         List<string> messageList = new List<string>();
+        public static string test;
 
-       
+
         public MenuScreen()
         {
             InitializeComponent();
@@ -40,6 +41,8 @@ namespace BrickBreaker
 
         public void messageSet()
         {
+           
+
             messageList.Add("Now in Colour!");
             messageList.Add("watch out for AI");
             messageList.Add(" Java > Bedrock");
@@ -59,8 +62,41 @@ namespace BrickBreaker
 
         private void MenuScreen_Load(object sender, EventArgs e)
         {
-            messageSet();
+      
 
+        }
+        // THIS IS ALL FOR ROTTATING THE LABEL AND CUTTENTLY IS NOT WORKINBG
+
+        private void subtitleLabel_Paint(object sender, PaintEventArgs e)
+        {
+           // //messageSet();
+           // Font myfont = new Font("Arial", 34);
+           // //Brush mybrush = new System.Drawing.SolidBrush(System.Drawing.Color.Yellow);
+           // //e.Graphics.TranslateTransform(30, 20);
+           // //e.Graphics.RotateTransform(45);
+           // //e.Graphics.DrawString(test, myfont, mybrush, 50, 50);
+
+           // e.Graphics.TranslateTransform(100, 100);
+     
+           //e.Graphics.RotateTransform(90);
+
+           // e.Graphics.DrawString("minecraft", Font, Brushes.Black, 50, 50);
+
+        }
+
+        private void testLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void testLabel_Paint(object sender, PaintEventArgs e)
+        {
+            //messageSet();
+            //Font myfont = new Font("Arial", 34);
+            //Brush mybrush = new System.Drawing.SolidBrush(System.Drawing.Color.Yellow);
+            //e.Graphics.TranslateTransform(30, 20);
+            //e.Graphics.RotateTransform(45);
+            //e.Graphics.DrawString("hello", myfont, mybrush, 50, 50);
         }
     }
 }

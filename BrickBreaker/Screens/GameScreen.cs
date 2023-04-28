@@ -40,7 +40,9 @@ namespace BrickBreaker
         SolidBrush blockBrush = new SolidBrush(Color.Red);
 
         #endregion
+       // SolidBrush darkRedBrush = new SolidBrush(Color.DarkRed);
 
+        List<PictureBox> livesList = new List<PictureBox>();  
         public GameScreen()
         {
             InitializeComponent();
@@ -54,9 +56,12 @@ namespace BrickBreaker
         }
         public void OnStart()
         {
-          
+            livesList.Add(livesBox1);
+            livesList.Add(livesBox2);
+            livesList.Add(livesBox3);
+
             //set life counter
-            lives = 3;
+            lives = 2;
 
             //set level tracker
             level = 1;
@@ -189,6 +194,9 @@ namespace BrickBreaker
             //test
             cam();
 
+            Nathaniel();
+
+
             //KianMethod(); //Test Pull Request Kian
 
             // Move the paddle
@@ -210,13 +218,17 @@ namespace BrickBreaker
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
             {
+                livesList[lives].Image = null;
+                livesList.RemoveAt(lives);
+                Refresh();
                 lives--;
+
 
                 // Moves the ball back to origin
                 ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
                 ball.y = (this.Height - paddle.height) - 85;
 
-                if (lives == 0)
+                if (lives == -1)
                 {
                     gameTimer.Enabled = false;
                     OnEnd();
@@ -287,5 +299,17 @@ namespace BrickBreaker
                 }
             }
         }
+
+
+        public void Nathaniel()
+        {
+          foreach(PictureBox l in livesList)
+            {
+                l.Image = Properties.Resources.minecraftHeart;
+            }
+
+
+        }
+
     }
 }
