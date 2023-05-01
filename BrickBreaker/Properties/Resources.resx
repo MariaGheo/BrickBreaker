@@ -6401,9 +6401,6 @@
         Yho7hcuFBK7xkwXQL+XeOWtsp5jGTklepFcmuikIC9O4d5hyfwEL5Zlsjls0FwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="MinecraftRegular_Bmg3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MinecraftRegular-Bmg3.ttf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="minecraftScreen" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAYABgAAD/4QBmRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAAB

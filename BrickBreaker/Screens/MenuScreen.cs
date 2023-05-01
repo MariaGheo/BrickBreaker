@@ -19,6 +19,7 @@ namespace BrickBreaker
         public MenuScreen()
         {
             InitializeComponent();
+            messageSet();
 
         }
 
@@ -57,12 +58,6 @@ namespace BrickBreaker
 
             subtitleLabel.Text = $"{messageList[random]}\n";
 
-
-        }
-
-        private void MenuScreen_Load(object sender, EventArgs e)
-        {
-      
 
         }
         // THIS IS ALL FOR ROTTATING THE LABEL AND CUTTENTLY IS NOT WORKINBG
