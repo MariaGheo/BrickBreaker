@@ -88,6 +88,12 @@
     <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="TransitionScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TransitionScreen.Designer.cs">
+      <DependentUpon>TransitionScreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransitionScreen.resx">
+      <DependentUpon>TransitionScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -162,6 +171,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="highscore.xml" />
+    <None Include="Resources\instructionsBackground2.jpg" />
+    <None Include="Resources\TransitionScreen.jpg" />
+    <None Include="Resources\goodbackground.jpg" />
+    <None Include="Resources\newPlainPog.jpg" />
+    <None Include="Resources\test %281%29.jpg" />
+    <None Include="Resources\mcPlainsBackground.jpg" />
+    <None Include="Resources\mcPlainsBackground %282%29.jpg" />
+    <None Include="Resources\mcPlainsBackground %281%29.jpg" />
     <None Include="Resources\plainsBackground %281%29.jpg" />
     <None Include="Resources\plainsBackground.jpg" />
     <None Include="Resources\minecraftHeart.png" />

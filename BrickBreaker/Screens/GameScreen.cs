@@ -40,6 +40,9 @@ namespace BrickBreaker
         SolidBrush blockBrush = new SolidBrush(Color.Red);
 
         List<PictureBox> livesList = new List<PictureBox>();
+        //List<Image> livesImage = new List<Image>();
+
+        Image backgroundImage = Properties.Resources.goodbackground;
 
         #endregion
 
@@ -150,7 +153,6 @@ namespace BrickBreaker
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             KianGameTimer();
-
             //test
             cam();
 
@@ -165,7 +167,6 @@ namespace BrickBreaker
             {
                 paddle.Move("right");
             }
-
             // Move ball
             ball.Move();
 
@@ -189,7 +190,6 @@ namespace BrickBreaker
                     OnEnd();
                 }
             }
-
             // Check for collision of ball with paddle, (incl. paddle movement)
             ball.PaddleCollision(paddle);
 
@@ -205,11 +205,9 @@ namespace BrickBreaker
                         gameTimer.Enabled = false;
                         OnEnd();
                     }
-
                     break;
                 }
             }
-
             //redraw the screen
             Refresh();
         }
@@ -228,6 +226,7 @@ namespace BrickBreaker
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+           e.Graphics.DrawImageUnscaled(backgroundImage, 0, 0);
             // Draws paddle
             paddleBrush.Color = paddle.colour;
             e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
@@ -240,6 +239,15 @@ namespace BrickBreaker
 
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
+            
+
+           //FOR NOT USING PICTURE BOXES
+            //e.Graphics.DrawImage(livesImage[0],14, 740);
+            //e.Graphics.DrawImage(livesImage[1], 64, 740);
+            //e.Graphics.DrawImage(livesImage[2], 114, 740);
+
+   
         }
 
         public void KianOnStart()
@@ -314,10 +322,16 @@ namespace BrickBreaker
             livesList.Add(livesBox2);
             livesList.Add(livesBox3);
 
-            foreach(PictureBox l in livesList)
+            foreach (PictureBox l in livesList)
             {
                 l.Image = Properties.Resources.minecraftHeart;
             }
+
+            //For making the lives an image, Not in use at the minute
+            //livesImage.Add(Properties.Resources.minecraftHeart);
+            //livesImage.Add(Properties.Resources.minecraftHeart);
+            //livesImage.Add(Properties.Resources.minecraftHeart);
+
         }
     }
 }

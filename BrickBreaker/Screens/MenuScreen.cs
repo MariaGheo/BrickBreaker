@@ -21,6 +21,8 @@ namespace BrickBreaker
             playButton.Font = Form1.myFont;
             hardButton.Font = Form1.myFont;
             exitButton.Font = Form1.myFont;
+            instructionsButton.Font = Form1.myFont;
+            highscoreButton.Font = Form1.myFont;
             subtitleLabel.Font = Form1.myFont;
         }
 
@@ -59,6 +61,19 @@ namespace BrickBreaker
         private void MenuScreen_Load(object sender, EventArgs e)
         {
             messageSet();
+
+        }
+
+        private void instructionsButton_Click(object sender, EventArgs e)
+        {
+
+            TransitionScreen ts = new TransitionScreen();
+            Form form = this.FindForm();
+
+            form.Controls.Add(ts);
+            form.Controls.Remove(this);
+
+            ts.Location = new Point((form.Width - ts.Width) / 2, (form.Height - ts.Height) / 2);
 
         }
     }
