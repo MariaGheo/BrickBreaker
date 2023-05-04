@@ -89,24 +89,9 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
             KianOnStart();
-            //#region Creates blocks for generic level. Need to replace with code that loads levels.
-
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
-
-            //blocks.Clear();
-            //int x = 10;
-
-            //while (blocks.Count < 13)
-            //{
-            //    x += 87;
-            //    Block b1 = new Block(x, 10, 1, Color.White);
-            //    blocks.Add(b1);
-            //}
-
-            //#endregion
 
             //XMLReader code: we will use this once the first level has been built
-            MariaOnStart(level);
+            MariaOnStart();
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -235,6 +220,7 @@ namespace BrickBreaker
             foreach (Block b in blocks)
             {
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                
             }
 
             // Draws ball
@@ -284,14 +270,14 @@ namespace BrickBreaker
             }
         }
 
-        public void MariaOnStart(int num)
+        public void MariaOnStart()
         {
-            XmlReader reader = XmlReader.Create($"Resources/level{num}.xml");
+            XmlReader reader = XmlReader.Create($"Resources/level{level}.xml");
 
             while (reader.Read())
             {
                 int x, y, hp;
-                string image = "";
+                Image image = null;
                 string test;
 
                 reader.ReadToFollowing("X");
@@ -309,6 +295,23 @@ namespace BrickBreaker
 
                 reader.ReadToNextSibling("HP");
                 hp = Convert.ToInt32(reader.ReadString());
+
+                switch (hp)
+                {
+                    case 1:
+                        //image = 
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 10:
+                        break;
+                }
 
                 blocks.Add(new Block(x, y, hp, image));
             }

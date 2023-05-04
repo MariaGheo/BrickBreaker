@@ -181,11 +181,11 @@
     <None Include="Resources\mcPlainsBackground %281%29.jpg" />
     <None Include="Resources\plainsBackground %281%29.jpg" />
     <None Include="Resources\plainsBackground.jpg" />
-    <None Include="Resources\minecraftHeart.png" />
-    <None Include="Resources\minecraftScreen.jpg" />
     <None Include="Resources\level1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\minecraftHeart.png" />
+    <None Include="Resources\minecraftScreen.jpg" />
     <None Include="Resources\brickTest.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
