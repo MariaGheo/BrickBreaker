@@ -50,6 +50,7 @@ namespace BrickBreaker
 
         public void Move(int y_, int height_)
         {
+            PowerupCollision(GameScreen.paddle);
             height = height_;
             y += speed;
 
@@ -67,7 +68,8 @@ namespace BrickBreaker
             Rectangle powerRec = new Rectangle(x, y, 12, 25);
             if (powerRec.IntersectsWith(paddleRec))
             {
-                if (type > 0 && type < 99) //good powerups
+                
+                if (type < 99) //good powerups
                 {
                     if (type == 1) //tnt green
                     {
@@ -75,13 +77,13 @@ namespace BrickBreaker
                         
                         foreach(Block b in GameScreen.blocks)
                         {
-                            Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
+                            Rectangle blockRec = new Rectangle(b.x, b.y, 10, 2);
 
                             if (tntRec.IntersectsWith(blockRec))
                             {
-                                GameScreen.blocks.Remove(b);
+                                b.hp--;
                             }
-
+                            
                         }
                         
                     }
@@ -91,9 +93,12 @@ namespace BrickBreaker
                         await Task.Delay(10000);
                         GameScreen.luckChance = 0;
                     }
+                    
                     else if (type == 3) //strength/double damage red
                     {
-
+                        GameScreen.damage = 2;
+                        await Task.Delay(10000);
+                        GameScreen.damage = 1;
                     }
                     else if (type == 4) //health potion/ +1 heart orange
                     {
@@ -101,7 +106,7 @@ namespace BrickBreaker
                     }
                     else if (type == 5) //Slowfall for ball purple
                     {
-                        //GameScreen.ball.ySpeed = prevYSpeed;
+                        GameScreen.ball.ySpeed = GameScreen.prevYSpeed - 2;
                     }
                     else if (type == 6) //totem of undying (might be hard) yellow
                     {
@@ -112,26 +117,32 @@ namespace BrickBreaker
                     {
                         if(type == -1) //speed/fast ball pink
                         {
-
+                            GameScreen.ball.xSpeed = GameScreen.prevXSpeed + 2;
                         }
                         else if(type == -2)//slowness/slow paddle cyan
                         {
-
+                            GameScreen.paddle.speed = GameScreen.paddlePrevSpeed - 2;
                         }
                         else if(type == -3) //harming potion marroon
                         {
-
+                            GameScreen.lives--;
                         }
                         else if(type == -4) //invisibility ball lavender
                         {
-                            
+                            GameScreen.invisible = true;
+                            await Task.Delay(5000);
+                            GameScreen.invisible = false;
+
                         }
                         else if(type == -5) //mining fatigue/no damage gray
                         {
-
+                            GameScreen.damage = 0;
+                            await Task.Delay(10000);
+                            GameScreen.damage = 1;
                         }
                     }
                 }
+            type = 0;
             }
         }
 

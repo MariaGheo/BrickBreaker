@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Xml;
+using System.Runtime.CompilerServices;
 
 namespace BrickBreaker
 {
@@ -22,18 +23,20 @@ namespace BrickBreaker
 
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown, spaceDown;
-
+        public static bool invisible;
         public static int score;
 
         // Game values
-       public static int lives;
+        public static int lives;
 
         // Paddle and Ball objects
-        Paddle paddle;
+        public static Paddle paddle;
         public static Ball ball;
         public static int luckChance;
         public static int prevYSpeed;
-
+        public static int prevXSpeed;
+        public static int paddlePrevSpeed;
+        public static int damage = 1;
 
         // list of all blocks for current level
         public static List<Block> blocks = new List<Block>();
@@ -46,7 +49,7 @@ namespace BrickBreaker
         public static SolidBrush invisBrush = new SolidBrush(Color.Transparent);
 
         List<PictureBox> livesList = new List<PictureBox>();
-        public static List<Color> colours = new List<Color> {Color.Green, Color.Blue, Color.Red, Color.Orange, Color.Purple, Color.Yellow, Color.Pink, Color.Cyan, Color.Maroon, Color.Lavender, Color.Gray};
+        public static List<Color> colours = new List<Color> { Color.Green, Color.Blue, Color.Red, Color.Orange, Color.Purple, Color.Yellow, Color.Pink, Color.Cyan, Color.Maroon, Color.Lavender, Color.Gray };
 
         // We will have a list of rotating images, Each time we change level we can pull a new image
         List<Image> backgroundImages = new List<Image>();
@@ -93,6 +96,7 @@ namespace BrickBreaker
             int paddleX = ((this.Width / 2) - (paddleWidth / 2));
             int paddleY = (this.Height - paddleHeight) - 60;
             int paddleSpeed = 8;
+            paddlePrevSpeed = paddleSpeed;
             paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
 
             // setup starting ball values
@@ -103,6 +107,7 @@ namespace BrickBreaker
             int xSpeed = 6;
             int ySpeed = 6;
             prevYSpeed = ySpeed;
+            prevXSpeed = xSpeed;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
@@ -204,11 +209,11 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    //Noah(b);
+                    Noah(b);
 
-                    b.hp--;
+                    b.hp -= damage;
 
-                    if(b.hp == 0)
+                    if (b.hp == 0)
                     {
                         blocks.Remove(b);
                         score += b.points;
@@ -241,13 +246,13 @@ namespace BrickBreaker
             XmlWriter writer = XmlWriter.Create("HighScoreXML.xml", null);
             writer.WriteStartElement("HighScore");
 
-            foreach(HighScore s in MenuScreen.highScores)
+            foreach (HighScore s in MenuScreen.highScores)
             {
                 writer.WriteElementString("Name", s.name);
                 writer.WriteElementString("Score", s.score.ToString());
             }
             writer.WriteEndElement();
-            writer.Close(); 
+            writer.Close();
 
 
 
@@ -256,9 +261,9 @@ namespace BrickBreaker
         {
 
             SetScore();
-            
+
             Form1.level++;
-            
+
             // Goes to the game over screen
             Form form = this.FindForm();
             TransitionScreen ps = new TransitionScreen();
@@ -268,7 +273,7 @@ namespace BrickBreaker
             form.Controls.Add(ps);
             form.Controls.Remove(this);
         }
-         
+
         public void NathanielGameOver()
         {
             Form1.totalScore = score;
@@ -294,7 +299,7 @@ namespace BrickBreaker
             foreach (Block b in blocks)
             {
                 e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
-                
+
                 if (b.image != null)
                 {
                     e.Graphics.DrawImage(b.image, b.x, b.y, 80, 30);
@@ -302,7 +307,14 @@ namespace BrickBreaker
             }
 
             // Draws ball
-            e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            if (invisible == true)
+            {
+                e.Graphics.FillEllipse(invisBrush, ball.x, ball.y, ball.size, ball.size);
+            }
+            else
+            {
+                e.Graphics.FillEllipse(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            }
 
             // Draws PowerUps
             foreach (Powerup p in powerups)
@@ -335,24 +347,32 @@ namespace BrickBreaker
         public void Noah(Block b)
         {
             Random randGen = new Random();
-            int chance = randGen.Next(1, 6);
+            int chance = randGen.Next(1, 2);
             if (chance <= 1 + luckChance)
             {
-                chance = randGen.Next(1, colours.Count);
+                chance = randGen.Next(1, colours.Count + 1);
                 Powerup newPowerup = new Powerup(b.x, b.y, chance);
                 powerups.Add(newPowerup);
             }
-           
+
         }
 
         public void NoahEngine()
         {
-            foreach (Powerup p in powerups)
+            for (int i = 0; i < powerups.Count; i++)
             {
-                p.Move(p.y, p.height);
-                p.PowerupCollision(paddle);
+                powerups[i].Move(powerups[i].y, powerups[i].height);
+                powerups[i].PowerupCollision(paddle);
+
+                if (powerups[i].type == 0)
+                {
+                    powerups.Remove(powerups[i]);
+
+                }
             }
         }
+
+    
 
         public void MariaOnStart()
         {
