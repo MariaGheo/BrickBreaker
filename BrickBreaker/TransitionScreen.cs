@@ -20,12 +20,16 @@ namespace BrickBreaker
         {
             InitializeComponent();
             messageSet();
-           // Form1.size = 24;
-          //  Form1.FontChange();
-            messageLabel.Font = Form1.myFont;
+      
+           
             subtitleLabel.Font = Form1.myFont;
             playButton.Font = Form1.myFont;
             exitButton.Font = Form1.myFont;
+
+            Form1.size = 20;
+            Form1.FontChange();
+
+            messageLabel.Font = Form1.myFont;
 
             check = 0;
         }
@@ -44,7 +48,7 @@ namespace BrickBreaker
         private void exitButton_Click(object sender, EventArgs e)
         {
             check++;
-            messageLabel.Text = "Once you exit, progress is not saved";
+            messageLabel.Text = "Are you sure you want to exit?";
 
             if (check > 1)
 

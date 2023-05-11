@@ -69,18 +69,22 @@
             // 
             this.messageLabel.AutoSize = true;
             this.messageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageLabel.Location = new System.Drawing.Point(568, 356);
+            this.messageLabel.ForeColor = System.Drawing.Color.White;
+            this.messageLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.messageLabel.Location = new System.Drawing.Point(539, 360);
             this.messageLabel.Name = "messageLabel";
-            this.messageLabel.Size = new System.Drawing.Size(93, 33);
+            this.messageLabel.Size = new System.Drawing.Size(194, 33);
             this.messageLabel.TabIndex = 11;
-            this.messageLabel.Text = "label1";
+            this.messageLabel.Text = "testing buildin";
             this.messageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // subtitleLabel
             // 
             this.subtitleLabel.AutoSize = true;
             this.subtitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subtitleLabel.Location = new System.Drawing.Point(624, 410);
+            this.subtitleLabel.ForeColor = System.Drawing.Color.White;
+            this.subtitleLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.subtitleLabel.Location = new System.Drawing.Point(631, 412);
             this.subtitleLabel.Name = "subtitleLabel";
             this.subtitleLabel.Size = new System.Drawing.Size(210, 33);
             this.subtitleLabel.TabIndex = 12;
@@ -92,11 +96,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Lime;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(628, 458);
+            this.label1.Location = new System.Drawing.Point(588, 454);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 9);
+            this.label1.Size = new System.Drawing.Size(253, 9);
             this.label1.TabIndex = 13;
-            this.label1.Text = "__________________________________";
+            this.label1.Text = "______________________________________________________________";
             // 
             // TransitionScreen
             // 
