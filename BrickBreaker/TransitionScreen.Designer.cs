@@ -71,11 +71,11 @@
             this.messageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messageLabel.ForeColor = System.Drawing.Color.White;
             this.messageLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.messageLabel.Location = new System.Drawing.Point(539, 360);
+            this.messageLabel.Location = new System.Drawing.Point(533, 360);
             this.messageLabel.Name = "messageLabel";
-            this.messageLabel.Size = new System.Drawing.Size(194, 33);
+            this.messageLabel.Size = new System.Drawing.Size(34, 33);
             this.messageLabel.TabIndex = 11;
-            this.messageLabel.Text = "testing buildin";
+            this.messageLabel.Text = "S";
             this.messageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // subtitleLabel
