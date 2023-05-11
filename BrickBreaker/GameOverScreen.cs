@@ -25,7 +25,7 @@ namespace BrickBreaker
             exitButton .Font = Form1.myFont;
 
 
-            Form1.size = 72;
+            Form1.size = 30;
         
             Form1.FontChange();
 
