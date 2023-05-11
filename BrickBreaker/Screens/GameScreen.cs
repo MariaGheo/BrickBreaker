@@ -24,7 +24,8 @@ namespace BrickBreaker
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown, spaceDown;
         public static bool invisible;
-        public static bool undying;
+        public static bool explode;
+       
         public static int score;
 
         // Game values
@@ -213,16 +214,13 @@ namespace BrickBreaker
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
             {
-                if (ball.BlockCollision(b))
-                {
 
-                    b.hp -= damage;
-
-                    if (b.hp == 0)
+                    if (b.hp <= 0)
                     {
                         blocks.Remove(b);
                         score += b.points;
                         Noah(b);
+                    break;
                     }
 
                     if (blocks.Count == 0)
@@ -230,7 +228,27 @@ namespace BrickBreaker
                         gameTimer.Enabled = false;
                         OnEnd();
                     }
+                if (ball.BlockCollision(b))
+                {
 
+                    b.hp -= damage;
+                    if(explode == true)
+                    {
+                        Rectangle tntRec = new Rectangle(ball.x - 50, ball.y - 50, 100, 100);
+
+                        foreach (Block block in blocks)
+                        {
+                            Rectangle blockRec = new Rectangle(block.x, block.y, block.width, block.height);
+
+                            if (tntRec.IntersectsWith(blockRec))
+                            {
+                                block.hp--;
+                            }
+
+                        }
+                        explode = false;
+                       
+                    }
                     break;
                 }
             }
@@ -353,11 +371,11 @@ namespace BrickBreaker
         public void Noah(Block b)
         {
             Random randGen = new Random();
-            int chance = randGen.Next(1, 6);
+            int chance = randGen.Next(1, 2);
             if (chance <= 1 + luckChance)
             {
                 chance = randGen.Next(1, colours.Count + 1);
-                chance = 2;
+                chance = 1;
                 Powerup newPowerup = new Powerup(b.x, b.y, chance);
                 powerups.Add(newPowerup);
             }

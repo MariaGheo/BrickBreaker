@@ -70,22 +70,11 @@ namespace BrickBreaker
             if (powerRec.IntersectsWith(paddleRec))
             {
                 x = 10000; //Move Powerup off screen till timer is done, gives illusion of breaking
-                type = 5;
+                
                
                     if (type == 1) //tnt Red Doesn't work
                     {
-                        Rectangle tntRec = new Rectangle(GameScreen.ball.x, GameScreen.ball.y, GameScreen.ball.size, GameScreen.ball.size);
-                        
-                        foreach(Block b in GameScreen.blocks)
-                        {
-                            Rectangle blockRec = new Rectangle(b.x, b.y, 50, 10);
-
-                            if (tntRec.IntersectsWith(blockRec))
-                            {
-                                b.hp--;
-                            }
-                            
-                        }
+                    GameScreen.explode = true;
                         
                     }
                     else if (type == 2) //luck/more powerups Green
@@ -98,7 +87,7 @@ namespace BrickBreaker
                     else if (type == 3) //strength/double damage orange
                     {
                         GameScreen.damage = 2;
-                        await Task.Delay(10000);
+                        await Task.Delay(5000);
                         GameScreen.damage = 1;
                     }
                     else if (type == 4) //health potion/ +1 heart Pink
@@ -107,7 +96,7 @@ namespace BrickBreaker
                     GameScreen.livesList[GameScreen.lives + 1].Image = Properties.Resources.minecraftHeart;
                     GameScreen.lives++;
                     }
-                    else if (type == 5) //Slowfall for ball Cyan VERY BROKEN
+                    else if (type == 5) //Slowfall for ball Cyan
                     {
                     if(GameScreen.ball.ySpeed > 0)
                     {
@@ -131,13 +120,13 @@ namespace BrickBreaker
                     }
                     }
                     
-                    else if (type == 6) //totem of undying (might be hard) yellow Broken
-                    {
-                        GameScreen.undying = true;
-                        await Task.Delay(1000);
-                        GameScreen.undying = false;
+                    //else if (type == 6) //totem of undying (might be hard) yellow Broken
+                    //{
+                    //    GameScreen.undying = true;
+                    //    await Task.Delay(1000);
+                    //    GameScreen.undying = false;
                         
-                    }
+                    //}
 
                     
                         if(type == 7) //speed/fast ball Blue
