@@ -51,14 +51,20 @@ namespace BrickBreaker
         public void messageSet()
         {
             messageList.Add("Now in Colour!");
-            messageList.Add("watch out for AI");
-            messageList.Add(" Java > Bedrock");
+            messageList.Add("Watch out for AI");
+            messageList.Add("Java > Bedrock");
             messageList.Add("If your reading this its too late");
-            messageList.Add("Bradyens an opp");
+            messageList.Add(":)");
             messageList.Add("Creeper gonna creep");
+            messageList.Add("New and improved!");
+            messageList.Add("Take back the night!");
+            messageList.Add("Dinnerbone?");
+            messageList.Add("I Hardly Know Her!");
+
+
 
             Random rnd = new Random();
-            int random = rnd.Next(0, 6);
+            int random = rnd.Next(0, 10);
 
             subtitleLabel.Text = $"{messageList[random]}\n";
         }
@@ -71,13 +77,13 @@ namespace BrickBreaker
 
         private void instructionsButton_Click(object sender, EventArgs e)
         {
-            //TransitionScreen ts = new TransitionScreen();
-            //Form form = this.FindForm();
+            InstructionsScreen ts = new InstructionsScreen();
+            Form form = this.FindForm();
 
-            //form.Controls.Add(ts);
-            //form.Controls.Remove(this);
+            form.Controls.Add(ts);
+            form.Controls.Remove(this);
 
-            //ts.Location = new Point((form.Width - ts.Width) / 2, (form.Height - ts.Height) / 2);
+            ts.Location = new Point((form.Width - ts.Width) / 2, (form.Height - ts.Height) / 2);
 
             // this needs to be fixed ?
         }

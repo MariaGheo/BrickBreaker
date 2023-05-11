@@ -121,7 +121,7 @@
             this.subtitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.subtitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subtitleLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.subtitleLabel.Location = new System.Drawing.Point(967, 78);
+            this.subtitleLabel.Location = new System.Drawing.Point(896, 97);
             this.subtitleLabel.Name = "subtitleLabel";
             this.subtitleLabel.Size = new System.Drawing.Size(68, 31);
             this.subtitleLabel.TabIndex = 6;
