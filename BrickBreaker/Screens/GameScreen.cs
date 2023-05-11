@@ -24,6 +24,7 @@ namespace BrickBreaker
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown, spaceDown;
         public static bool invisible;
+        public static bool undying;
         public static int score;
 
         // Game values
@@ -48,8 +49,8 @@ namespace BrickBreaker
         SolidBrush blockBrush = new SolidBrush(Color.Red);
         public static SolidBrush invisBrush = new SolidBrush(Color.Transparent);
 
-        List<PictureBox> livesList = new List<PictureBox>();
-        public static List<Color> colours = new List<Color> { Color.Green, Color.Blue, Color.Red, Color.Orange, Color.Purple, Color.Yellow, Color.Pink, Color.Cyan, Color.Maroon, Color.Lavender, Color.Gray };
+        public static List<PictureBox> livesList = new List<PictureBox>();
+        public static List<Color> colours = new List<Color> { Color.Red, Color.Green, Color.Orange, Color.Pink, Color.Cyan, Color.Yellow, Color.Blue, Color.Gray, Color.Purple, Color.White, Color.SlateGray };
 
         // We will have a list of rotating images, Each time we change level we can pull a new image
         List<Image> backgroundImages = new List<Image>();
@@ -161,6 +162,11 @@ namespace BrickBreaker
         {
             KianGameTimer();
 
+            if(lives > 3) //Cap lives at 3
+            {
+                lives = 3;
+            }
+
             //test
             cam();
 
@@ -186,7 +192,7 @@ namespace BrickBreaker
             if (ball.BottomCollision(this))
             {
                 livesList[lives].Image = null;
-                livesList.RemoveAt(lives);
+                //livesList.RemoveAt(lives);
                 lives--;
 
                 // Moves the ball back to origin
@@ -209,7 +215,6 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    Noah(b);
 
                     b.hp -= damage;
 
@@ -217,6 +222,7 @@ namespace BrickBreaker
                     {
                         blocks.Remove(b);
                         score += b.points;
+                        Noah(b);
                     }
 
                     if (blocks.Count == 0)
@@ -347,10 +353,11 @@ namespace BrickBreaker
         public void Noah(Block b)
         {
             Random randGen = new Random();
-            int chance = randGen.Next(1, 2);
+            int chance = randGen.Next(1, 6);
             if (chance <= 1 + luckChance)
             {
                 chance = randGen.Next(1, colours.Count + 1);
+                chance = 2;
                 Powerup newPowerup = new Powerup(b.x, b.y, chance);
                 powerups.Add(newPowerup);
             }
