@@ -27,16 +27,12 @@ namespace BrickBreaker
          3 - Strength
          4 - Health Potion
          5 - Slowfall
-         6 - Totem of Undying
          Bad Powerups
-         -1 - Speed
-         -2 - Slowness
-         -3 - Harming potion
-         -4 - Invisibility
-         -5 - Mining Fatigue
-         
-        Random
-        99 - Suspicious Stew
+         7 - Speed
+         8 - Slowness
+         9 - Harming potion
+         10 - Invisibility
+         11 - Mining Fatigue
           * */
         public Powerup(int x_, int y_, int _type)
         {
@@ -131,10 +127,28 @@ namespace BrickBreaker
                     
                         if(type == 7) //speed/fast ball Blue
                         {
-                            GameScreen.ball.xSpeed = GameScreen.prevXSpeed + 2;
-                            await Task.Delay(5000);
-                            GameScreen.ball.xSpeed = GameScreen.prevXSpeed;
-                        }
+                    if (GameScreen.ball.xSpeed > 0)
+                    {
+                        GameScreen.ball.xSpeed = GameScreen.prevXSpeed - 2;
+                        await Task.Delay(5000);
+
+                    }
+                    else
+                    {
+                        GameScreen.ball.xSpeed = -GameScreen.prevXSpeed + 2;
+                        await Task.Delay(5000);
+
+                    }
+                    if (GameScreen.ball.xSpeed > 0)
+                    {
+                        GameScreen.ball.xSpeed = GameScreen.prevXSpeed;
+                    }
+                    else
+                    {
+                        GameScreen.ball.xSpeed = -GameScreen.prevXSpeed;
+                    }
+                }
+            
                         else if(type == 8)//slowness/slow paddle Gray
                         {
                             GameScreen.paddle.speed = GameScreen.paddlePrevSpeed - 2;
