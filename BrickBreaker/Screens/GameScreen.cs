@@ -51,7 +51,7 @@ namespace BrickBreaker
         public static SolidBrush invisBrush = new SolidBrush(Color.Transparent);
 
         public static List<PictureBox> livesList = new List<PictureBox>();
-        public static List<Color> colours = new List<Color> { Color.Red, Color.Green, Color.Orange, Color.Pink, Color.Cyan, Color.Yellow, Color.Blue, Color.Gray, Color.Purple, Color.White, Color.SlateGray };
+        public static List<Color> colours = new List<Color> { Color.Red, Color.Green, Color.Orange, Color.Pink, Color.Cyan, Color.Blue, Color.Gray, Color.Purple, Color.White, Color.SlateGray };
 
         // We will have a list of rotating images, Each time we change level we can pull a new image
         List<Image> backgroundImages = new List<Image>();

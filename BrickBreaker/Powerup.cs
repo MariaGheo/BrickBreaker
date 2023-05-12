@@ -125,7 +125,7 @@ namespace BrickBreaker
                     //}
 
                     
-                        if(type == 7) //speed/fast ball Blue
+                        if(type == 6) //speed/fast ball Blue
                         {
                     if (GameScreen.ball.xSpeed > 0)
                     {
@@ -149,25 +149,25 @@ namespace BrickBreaker
                     }
                 }
             
-                        else if(type == 8)//slowness/slow paddle Gray
+                        else if(type == 7)//slowness/slow paddle Gray
                         {
                             GameScreen.paddle.speed = GameScreen.paddlePrevSpeed - 2;
                             await Task.Delay(5000);
                             GameScreen.paddle.speed = GameScreen.paddlePrevSpeed;
                         }
-                        else if(type == 9) //harming potion Purple
+                        else if(type == 8) //harming potion Purple
                         {
                         GameScreen.livesList[GameScreen.lives].Image = null;
                         GameScreen.lives--;
                         }
-                        else if(type == 10) //invisibility ball White
+                        else if(type == 9) //invisibility ball White
                         {
                             GameScreen.invisible = true;
                             await Task.Delay(5000);
                             GameScreen.invisible = false;
 
                         }
-                        else if(type == 11) //mining fatigue/no damage slate gray
+                        else if(type == 10) //mining fatigue/no damage slate gray
                         {
                             GameScreen.damage = 0;
                             await Task.Delay(10000);
