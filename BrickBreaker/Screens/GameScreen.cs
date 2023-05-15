@@ -54,11 +54,15 @@ namespace BrickBreaker
         public static List<Color> colours = new List<Color> { Color.Red, Color.Green, Color.Orange, Color.Pink, Color.Cyan, Color.Blue, Color.Gray, Color.Purple, Color.White, Color.SlateGray };
 
         // We will have a list of rotating images, Each time we change level we can pull a new image
-        List<Image> backgroundImages = new List<Image>();
+        //List<Image> backgroundImages = new List<Image>();
 
         Image plainsBackground = Properties.Resources.goodBackground;
+        Image cavesBackground = Properties.Resources.cavesBackground;
+        Image netherBackground = Properties.Resources.netherBackground;
+        Image warpedForestBackground = Properties.Resources.warpedForestBackground;
+        Image endBackground = Properties.Resources.endBackground;
 
-
+        Image backgroundImage;
 
         #endregion
 
@@ -117,8 +121,15 @@ namespace BrickBreaker
 
             MariaOnStart();
 
+            SetBackgroundImage();
+
             // start the game engine loop
             gameTimer.Enabled = true;
+        }
+
+        public void LoadLevel()
+        {
+
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -277,9 +288,6 @@ namespace BrickBreaker
             }
             writer.WriteEndElement();
             writer.Close();
-
-
-
         }
         public void OnEnd()
         {
@@ -313,7 +321,7 @@ namespace BrickBreaker
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImageUnscaled(backgroundImages[Form1.level - 1], 0, 0);
+            e.Graphics.DrawImageUnscaled(backgroundImage, 0, 0);
 
             // Draws paddle
             paddleBrush.Color = paddle.colour;
@@ -396,7 +404,29 @@ namespace BrickBreaker
             }
         }
 
-    
+        public void SetBackgroundImage()
+        {
+            if(Form1.level < 4)
+            {
+                backgroundImage = plainsBackground;
+            }
+            else if(Form1.level < 6)
+            {
+                backgroundImage = cavesBackground;
+            }
+            else if(Form1.level < 8)
+            {
+                backgroundImage = netherBackground;
+            }
+            else if(Form1.level < 11)
+            {
+                backgroundImage = warpedForestBackground;
+            }
+            else
+            {
+                backgroundImage = endBackground;
+            }
+        }
 
         public void MariaOnStart()
         {
@@ -450,8 +480,6 @@ namespace BrickBreaker
             }
 
             reader.Close();
-
-            backgroundImages.Add(plainsBackground);
         }
 
         public void NathanielOnStart()

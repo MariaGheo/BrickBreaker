@@ -78,14 +78,18 @@ namespace BrickBreaker
         public void messageSet()
         {
             messageList.Add("Now in Colour!");
-            messageList.Add("watch out for AI");
-            messageList.Add(" Java > Bedrock");
-            messageList.Add("If your reading this its too late");
-            messageList.Add("Bradyens an opp");
+            messageList.Add("Watch out for AI");
+            messageList.Add("Java > Bedrock");
+            messageList.Add("If you're reading this it's too late");
+            messageList.Add(":)");
             messageList.Add("Creeper gonna creep");
+            messageList.Add("New and improved!");
+            messageList.Add("Take back the night!");
+            messageList.Add("Dinnerbone?");
+            messageList.Add("I hardly know her!");
 
             Random rnd = new Random();
-            int random = rnd.Next(0, 6);
+            int random = rnd.Next(0, 10);
 
             subtitleLabel.Text = $"{messageList[random]}\n";
         }

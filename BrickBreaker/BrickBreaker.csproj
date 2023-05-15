@@ -181,6 +181,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="highscore.xml" />
+    <None Include="Resources\transitionScreen.jpg" />
+    <None Include="Resources\warpedForestBackgroundDeath.jpg" />
+    <None Include="Resources\warpedForestBackground.jpg" />
+    <None Include="Resources\netherBackgroundDeath.jpg" />
+    <None Include="Resources\netherBackground.jpg" />
+    <None Include="Resources\goodBackgroundDeath.jpg" />
+    <None Include="Resources\endBackgroundDeath.jpg" />
+    <None Include="Resources\endBackground.jpg" />
+    <None Include="Resources\cavesBackgroundDeath.jpg" />
+    <None Include="Resources\cavesBackground.jpg" />
     <None Include="Resources\level7.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

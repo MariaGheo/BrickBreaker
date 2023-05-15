@@ -117,6 +117,26 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cavesBackground {
+            get {
+                object obj = ResourceManager.GetObject("cavesBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cavesBackgroundDeath {
+            get {
+                object obj = ResourceManager.GetObject("cavesBackgroundDeath", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap diamondBlock {
             get {
                 object obj = ResourceManager.GetObject("diamondBlock", resourceCulture);
@@ -137,9 +157,39 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap endBackground {
+            get {
+                object obj = ResourceManager.GetObject("endBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap endBackgroundDeath {
+            get {
+                object obj = ResourceManager.GetObject("endBackgroundDeath", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap goodBackground {
             get {
                 object obj = ResourceManager.GetObject("goodBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap goodBackgroundDeath {
+            get {
+                object obj = ResourceManager.GetObject("goodBackgroundDeath", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -270,6 +320,26 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap netherBackground {
+            get {
+                object obj = ResourceManager.GetObject("netherBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap netherBackgroundDeath {
+            get {
+                object obj = ResourceManager.GetObject("netherBackgroundDeath", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap netherrackBlock {
             get {
                 object obj = ResourceManager.GetObject("netherrackBlock", resourceCulture);
@@ -313,6 +383,36 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap stoneBlock {
             get {
                 object obj = ResourceManager.GetObject("stoneBlock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transitionScreen {
+            get {
+                object obj = ResourceManager.GetObject("transitionScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap warpedForestBackground {
+            get {
+                object obj = ResourceManager.GetObject("warpedForestBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap warpedForestBackgroundDeath {
+            get {
+                object obj = ResourceManager.GetObject("warpedForestBackgroundDeath", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
