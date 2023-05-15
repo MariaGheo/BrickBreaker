@@ -129,13 +129,13 @@ namespace BrickBreaker
                         {
                     if (GameScreen.ball.xSpeed > 0)
                     {
-                        GameScreen.ball.xSpeed = GameScreen.prevXSpeed - 2;
+                        GameScreen.ball.xSpeed = GameScreen.prevXSpeed + 2;
                         await Task.Delay(5000);
 
                     }
                     else
                     {
-                        GameScreen.ball.xSpeed = -GameScreen.prevXSpeed + 2;
+                        GameScreen.ball.xSpeed = -GameScreen.prevXSpeed - 2;
                         await Task.Delay(5000);
 
                     }

@@ -219,7 +219,7 @@ namespace BrickBreaker
                     {
                         blocks.Remove(b);
                         score += b.points;
-                        Kian(b);
+                        NoahKian(b);
                     break;
                     }
 
@@ -253,7 +253,7 @@ namespace BrickBreaker
                 }
             }
 
-            KianPowerupEngine();
+            NoahKianPowerupEngine();
 
             //redraw the screen
             Refresh();
@@ -368,7 +368,7 @@ namespace BrickBreaker
 
         }
 
-        public void Kian(Block b)
+        public void NoahKian(Block b)
         {
             Random randGen = new Random();
             int chance = randGen.Next(1, 6);
@@ -381,7 +381,7 @@ namespace BrickBreaker
 
         }
 
-        public void KianPowerupEngine()
+        public void NoahKianPowerupEngine()
         {
             for (int i = 0; i < powerups.Count; i++)
             {
