@@ -15,25 +15,25 @@ namespace BrickBreaker
         public int x, y, type;
 
         public SolidBrush powerUpBrush = new SolidBrush(Color.White);
-      
 
-      
+
+
 
         Random randGen = new Random();
-         /* Kian Powerups
-          * Good Powerups 
-         1 - TNT
-         2 - Luck 
-         3 - Strength
-         4 - Health Potion
-         5 - Slowfall
-         Bad Powerups
-         7 - Speed
-         8 - Slowness
-         9 - Harming potion
-         10 - Invisibility
-         11 - Mining Fatigue
-          * */
+        /* Kian Powerups
+         * Good Powerups 
+        1 - TNT
+        2 - Luck 
+        3 - Strength
+        4 - Health Potion
+        5 - Slowfall
+        Bad Powerups
+        7 - Speed
+        8 - Slowness
+        9 - Harming potion
+        10 - Invisibility
+        11 - Mining Fatigue
+         * */
         public Powerup(int x_, int y_, int _type)
         {
             x = x_;
@@ -55,7 +55,7 @@ namespace BrickBreaker
             {
                 speed *= +1;
             }
-         
+
 
         }
 
@@ -66,47 +66,49 @@ namespace BrickBreaker
             if (powerRec.IntersectsWith(paddleRec))
             {
                 x = 10000; //Move Powerup off screen till timer is done, gives illusion of breaking
-                
-               
-                    if (type == 1) //tnt Red Doesn't work
-                    {
+
+
+                if (type == 1) //tnt Red Doesn't work
+                {
                     GameScreen.explode = true;
-                        
-                    }
-                    else if (type == 2) //luck/more powerups Green
+
+                }
+                else if (type == 2) //luck/more powerups Green
+                {
+                    GameScreen.luckChance = 2;
+                    await Task.Delay(10000);
+                    GameScreen.luckChance = 0;
+                }
+
+                else if (type == 3) //strength/double damage orange
+                {
+                    GameScreen.damage = 2;
+                    await Task.Delay(5000);
+                    GameScreen.damage = 1;
+                }
+                else if (type == 4) //health potion/ +1 heart Pink
+                {
+                    if(GameScreen.lives < 2)
                     {
-                        GameScreen.luckChance = 2;
-                        await Task.Delay(10000);
-                        GameScreen.luckChance = 0;
+                        GameScreen.livesList[GameScreen.lives + 1].Image = Properties.Resources.minecraftHeart;
+                        GameScreen.lives++;
                     }
-                    
-                    else if (type == 3) //strength/double damage orange
-                    {
-                        GameScreen.damage = 2;
-                        await Task.Delay(5000);
-                        GameScreen.damage = 1;
-                    }
-                    else if (type == 4) //health potion/ +1 heart Pink
-                    {
-                    
-                    GameScreen.livesList[GameScreen.lives + 1].Image = Properties.Resources.minecraftHeart;
-                    GameScreen.lives++;
-                    }
-                    else if (type == 5) //Slowfall for ball Cyan
-                    {
-                    if(GameScreen.ball.ySpeed > 0)
+                }
+                else if (type == 5) //Slowfall for ball Cyan
+                {
+                    if (GameScreen.ball.ySpeed > 0)
                     {
                         GameScreen.ball.ySpeed = GameScreen.prevYSpeed - 2;
                         await Task.Delay(5000);
-                        
+
                     }
                     else
                     {
                         GameScreen.ball.ySpeed = -GameScreen.prevYSpeed + 2;
                         await Task.Delay(5000);
-                        
+
                     }
-                    if(GameScreen.ball.ySpeed > 0)
+                    if (GameScreen.ball.ySpeed > 0)
                     {
                         GameScreen.ball.ySpeed = GameScreen.prevYSpeed;
                     }
@@ -114,19 +116,19 @@ namespace BrickBreaker
                     {
                         GameScreen.ball.ySpeed = -GameScreen.prevYSpeed;
                     }
-                    }
-                    
-                    //else if (type == 6) //totem of undying (might be hard) yellow Broken
-                    //{
-                    //    GameScreen.undying = true;
-                    //    await Task.Delay(1000);
-                    //    GameScreen.undying = false;
-                        
-                    //}
+                }
 
-                    
-                        if(type == 6) //speed/fast ball Blue
-                        {
+                //else if (type == 6) //totem of undying (might be hard) yellow Broken
+                //{
+                //    GameScreen.undying = true;
+                //    await Task.Delay(1000);
+                //    GameScreen.undying = false;
+
+                //}
+
+
+                if (type == 6) //speed/fast ball Blue
+                {
                     if (GameScreen.ball.xSpeed > 0)
                     {
                         GameScreen.ball.xSpeed = GameScreen.prevXSpeed + 2;
@@ -148,36 +150,36 @@ namespace BrickBreaker
                         GameScreen.ball.xSpeed = -GameScreen.prevXSpeed;
                     }
                 }
-            
-                        else if(type == 7)//slowness/slow paddle Gray
-                        {
-                            GameScreen.paddle.speed = GameScreen.paddlePrevSpeed - 2;
-                            await Task.Delay(5000);
-                            GameScreen.paddle.speed = GameScreen.paddlePrevSpeed;
-                        }
-                        else if(type == 8) //harming potion Purple
-                        {
-                        GameScreen.livesList[GameScreen.lives].Image = null;
-                        GameScreen.lives--;
-                        }
-                        else if(type == 9) //invisibility ball White
-                        {
-                            GameScreen.invisible = true;
-                            await Task.Delay(5000);
-                            GameScreen.invisible = false;
 
-                        }
-                        else if(type == 10) //mining fatigue/no damage slate gray
-                        {
-                            GameScreen.damage = 0;
-                            await Task.Delay(10000);
-                            GameScreen.damage = 1;
-                        }
-                        
-                        
-                    
-                
-            type = 0;
+                else if (type == 7)//slowness/slow paddle Gray
+                {
+                    GameScreen.paddle.speed = GameScreen.paddlePrevSpeed - 2;
+                    await Task.Delay(5000);
+                    GameScreen.paddle.speed = GameScreen.paddlePrevSpeed;
+                }
+                else if (type == 8) //harming potion Purple
+                {
+                    GameScreen.livesList[GameScreen.lives].Image = null;
+                    GameScreen.lives--;
+                }
+                else if (type == 9) //invisibility ball White
+                {
+                    GameScreen.invisible = true;
+                    await Task.Delay(5000);
+                    GameScreen.invisible = false;
+
+                }
+                else if (type == 10) //mining fatigue/no damage slate gray
+                {
+                    GameScreen.damage = 0;
+                    await Task.Delay(10000);
+                    GameScreen.damage = 1;
+                }
+
+
+
+
+                type = 0;
             }
         }
 

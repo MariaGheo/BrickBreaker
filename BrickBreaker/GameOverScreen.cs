@@ -16,14 +16,19 @@ namespace BrickBreaker
         {// Make background the last game screen background with a red filter?
             InitializeComponent();
 
-          //  if (GameScreen.lives )
-            
+            if(Form1.level == 12)
+            {
+                titleLabel.Text = "You won!";
+            }
+            else
+            {
+                titleLabel.Text = "You died!";
+            }
           
             subtitleLabel.Font = Form1.myFont;
             scoreLabel.Font = Form1.myFont;
             scoreValue.Font = Form1.myFont;
             exitButton .Font = Form1.myFont;
-
 
             Form1.size = 72;
         

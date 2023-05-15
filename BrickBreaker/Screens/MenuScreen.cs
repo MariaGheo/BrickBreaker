@@ -17,9 +17,7 @@ namespace BrickBreaker
 
         public static List<HighScore> highScores = new List<HighScore>();
         
-
         public MenuScreen()
-
         {
             InitializeComponent();
             Form1.size = 16;
@@ -34,10 +32,12 @@ namespace BrickBreaker
             highscoreButton.Font = Form1.myFont;
             subtitleLabel.Font = Form1.myFont;
         }
+
         public void Cam()
         {
             string name, score;
             XmlReader reader = XmlReader.Create("HighScoreXML.xml");
+
             while (reader.Read())
             {
                 if (reader.NodeType == XmlNodeType.Text)
@@ -50,14 +50,13 @@ namespace BrickBreaker
 
                     int newScore = Convert.ToInt32(score);
 
-                   HighScore h= new HighScore(name, newScore);
+                    HighScore h= new HighScore(name, newScore);
 
-                   highScores.Add(h);
+                    highScores.Add(h);
                 }
             }
-
-
         }
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -97,7 +96,6 @@ namespace BrickBreaker
         private void MenuScreen_Load(object sender, EventArgs e)
         {
             messageSet();
-
         }
 
         private void instructionsButton_Click(object sender, EventArgs e)

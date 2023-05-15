@@ -26,7 +26,7 @@ namespace BrickBreaker
         public static bool invisible;
         public static bool explode;
        
-        public static int score;
+        public static List<int> scores = new List<int>();
 
         // Game values
         public static int lives;
@@ -53,9 +53,6 @@ namespace BrickBreaker
         public static List<PictureBox> livesList = new List<PictureBox>();
         public static List<Color> colours = new List<Color> { Color.Red, Color.Green, Color.Orange, Color.Pink, Color.Cyan, Color.Blue, Color.Gray, Color.Purple, Color.White, Color.SlateGray };
 
-        // We will have a list of rotating images, Each time we change level we can pull a new image
-        //List<Image> backgroundImages = new List<Image>();
-
         Image plainsBackground = Properties.Resources.goodBackground;
         Image cavesBackground = Properties.Resources.cavesBackground;
         Image netherBackground = Properties.Resources.netherBackground;
@@ -71,12 +68,20 @@ namespace BrickBreaker
             InitializeComponent();
             Form1.size = 16;
             Form1.FontChange();
-            OnStart();
+
+            if (Form1.level == 1)
+            {
+                OnStart();
+            }
+            else
+            {
+                LoadNextLevel();
+            }
         }
 
         public void cam()
         {
-            scoreOutput.Text = $"Score: {score}";
+            scoreOutput.Text = $"Score: {scores[Form1.level - 1]}";
         }
 
         public void OnStart()
@@ -85,13 +90,14 @@ namespace BrickBreaker
             NathanielOnStart();
 
             // Reset score
-            score = 0;
+            scores.Clear();
+            scores.Add(0);
 
-            //set life counter
+            // Reset life counter
             lives = 2;
 
-            //set level tracker
-            //level = 1;
+            // Reset level tracker
+            Form1.level = 1;
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -127,9 +133,50 @@ namespace BrickBreaker
             gameTimer.Enabled = true;
         }
 
-        public void LoadLevel()
+        public void LoadNextLevel()
         {
+            scoreOutput.Font = Form1.myFont;
 
+            NathanielOnStart();
+
+            // Add score for this level
+            scores.Add(0);
+
+            // Reset life counter
+            lives = 2;
+
+            // Set all button presses to false.
+            leftArrowDown = rightArrowDown = false;
+
+            // Setup starting paddle values and create paddle object
+            int paddleWidth = 80;
+            int paddleHeight = 20;
+            int paddleX = ((this.Width / 2) - (paddleWidth / 2));
+            int paddleY = (this.Height - paddleHeight) - 60;
+            int paddleSpeed = 8;
+            paddlePrevSpeed = paddleSpeed;
+            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
+
+            // Setup starting ball values
+            int ballX = this.Width / 2 - 10;
+            int ballY = this.Height - paddle.height - 80;
+
+            // Creates a new ball
+            int xSpeed = 6;
+            int ySpeed = 6;
+            prevYSpeed = ySpeed;
+            prevXSpeed = xSpeed;
+            int ballSize = 20;
+            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
+
+            // Stop ball from moving before player is ready
+            KianOnStart();
+
+            // Read XML file for this level
+            MariaOnStart();
+
+            // Set background image for this level
+            SetBackgroundImage();
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -174,9 +221,9 @@ namespace BrickBreaker
         {
             KianGameTimer();
 
-            if(lives > 3) //Cap lives at 3
+            if(lives > 2) //Cap lives at 3
             {
-                lives = 3;
+                lives = 2;
             }
 
             //test
@@ -225,24 +272,18 @@ namespace BrickBreaker
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
             {
-
-                    if (b.hp <= 0)
-                    {
-                        blocks.Remove(b);
-                        score += b.points;
-                        NoahKian(b);
+                if (b.hp <= 0)
+                {
+                    blocks.Remove(b);
+                    scores[Form1.level - 1] += b.points;
+                    NoahKian(b);
                     break;
-                    }
-
-                    if (blocks.Count == 0)
-                    {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                    }
+                }
+                
                 if (ball.BlockCollision(b))
                 {
-
                     b.hp -= damage;
+
                     if(explode == true)
                     {
                         Rectangle tntRec = new Rectangle(ball.x - 50, ball.y - 50, 100, 100);
@@ -257,11 +298,20 @@ namespace BrickBreaker
                             }
 
                         }
+                        
                         explode = false;
-                       
                     }
+
                     break;
                 }
+
+                
+            }
+
+            if (blocks.Count == 0)
+            {
+                gameTimer.Enabled = false;
+                OnEnd();
             }
 
             NoahKianPowerupEngine();
@@ -269,10 +319,10 @@ namespace BrickBreaker
             //redraw the screen
             Refresh();
         }
+
         public void SetScore()
         {
-
-            string highScore = score.ToString();
+            string highScore = scores[Form1.level - 1].ToString();
             int intScore = Convert.ToInt32(highScore);
 
             HighScore newScore = new HighScore("Player", intScore);
@@ -289,26 +339,38 @@ namespace BrickBreaker
             writer.WriteEndElement();
             writer.Close();
         }
+
         public void OnEnd()
         {
-
             SetScore();
 
             Form1.level++;
 
-            // Goes to the game over screen
-            Form form = this.FindForm();
-            TransitionScreen ps = new TransitionScreen();
+            if(Form1.level == 12)
+            {
+                NathanielGameOver();
+            }
+            else
+            {
+                // Goes to the transition screen
+                Form form = this.FindForm();
+                TransitionScreen ps = new TransitionScreen();
 
-            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
+                ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
 
-            form.Controls.Add(ps);
-            form.Controls.Remove(this);
+                form.Controls.Add(ps);
+                form.Controls.Remove(this);
+            }
         }
 
         public void NathanielGameOver()
         {
-            Form1.totalScore = score;
+            Form1.totalScore = 0;
+
+            foreach (int score in scores)
+            {
+                Form1.totalScore += score;
+            }
 
             Form form = this.FindForm();
             GameOverScreen ps = new GameOverScreen();

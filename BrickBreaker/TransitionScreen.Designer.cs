@@ -68,7 +68,9 @@
             // messageLabel
             // 
             this.messageLabel.AutoSize = true;
+            this.messageLabel.BackColor = System.Drawing.Color.Transparent;
             this.messageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageLabel.ForeColor = System.Drawing.Color.White;
             this.messageLabel.Location = new System.Drawing.Point(558, 329);
             this.messageLabel.Name = "messageLabel";
             this.messageLabel.Size = new System.Drawing.Size(93, 33);
@@ -78,7 +80,9 @@
             // subtitleLabel
             // 
             this.subtitleLabel.AutoSize = true;
+            this.subtitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.subtitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.subtitleLabel.ForeColor = System.Drawing.Color.White;
             this.subtitleLabel.Location = new System.Drawing.Point(597, 412);
             this.subtitleLabel.Name = "subtitleLabel";
             this.subtitleLabel.Size = new System.Drawing.Size(210, 33);
@@ -100,6 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::BrickBreaker.Properties.Resources.transitionScreen;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.subtitleLabel);
             this.Controls.Add(this.messageLabel);
